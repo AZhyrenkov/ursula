@@ -1,0 +1,35 @@
+version: "3.0"
+
+services:
+  ursula:
+    container_name: shiny
+    # To build the image locally, comment out "image" below, and uncomment
+    # "build" and the lines indented under it.
+    # image: rocker/shiny
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    # Setting this to something other than 'root' will cause shiny apps not to
+    # run on the localhost:80 "Welcome to Shiny" diagnostics page mentioned
+    # below.
+    user: 'root'
+    ports:
+      - '3801:3838'
+      - '8701:8787'
+    volumes:
+      - 'shinyapps/:/srv/shiny-server/'
+      - 'shinylog/:/var/log/shiny-server/'
+      - 'container_home/home/ursula/work'
+    environment:
+      - ROOT = TRUE
+      - USER = ursula
+      - PASSWORD = EverybodyWins9000!
+      - RUN_RSTUDIO = yes
+      - RUN_SHINY = yes
+    entrypoint:"/usr/bin/with-contenv bash"
+    networks:
+      - ursula_network
+networks:
+  ursula_network:
+    driver: bridge
