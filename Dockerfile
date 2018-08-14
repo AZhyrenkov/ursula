@@ -3,14 +3,7 @@ FROM rocker/shiny:latest
 MAINTAINER Aleksey Zhirenkov "ozhyrenkov@gmail.com"
 # Inspired by Sebastian Kranz "sebastian.kranz@uni-ulm.de" https://github.com/skranz/shinyrstudioDocker
 
-#install necessary packages 
-RUN su - -c "R -e "source('https://bioconductor.org/biocLite.R')""
-RUN su - -c "R -e \
-	"install.packages(c( \
-	'shiny','tidyverse','ggplot2','DBI','RODBC',' tidyverse','dplyr', \
-    'devtools','formatR','remotes','selectr','RMySQL','RODBC','slackr', \
-	'ggplot2','RPostgreSQL','corrr','carret','DBI','devtools'), repos='https://cran.rstudio.com/')""
-
+# Prepare linux environment
 RUN apt-get update && \
     apt-get install -y \
 	gdebi-core \
@@ -21,15 +14,7 @@ RUN apt-get update && \
 	libmariadb-client-lgpl-dev \
 	libpq-dev \
 	libssh2-1-dev \
-
-
-#install shiny stuff
-RUN wget\
-  https://raw.github.com/rstudio/shiny-server/master/config/upstart/shiny-server.conf\
-  -O /etc/init/shiny-server.conf
-
-RUN apt-get update && apt-get install -y -t unstable \
-    sudo \
+	sudo \
     pandoc \
     pandoc-citeproc \
     libcurl4-gnutls-dev \
@@ -43,6 +28,21 @@ RUN apt-get update && apt-get install -y -t unstable \
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" && \
     cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ && \
     rm -rf /var/lib/apt/lists/*
+
+
+#install necessary packages 
+RUN su - -c "R -e "source('https://bioconductor.org/biocLite.R')""
+
+RUN su - -c "R -e \
+	"install.packages(c( \
+	'shiny','tidyverse','ggplot2','DBI','RODBC',' tidyverse','dplyr', \
+    'devtools','formatR','remotes','selectr','RMySQL','RODBC','slackr', \
+	'ggplot2','RPostgreSQL','corrr','carret','DBI','devtools'), repos='https://cran.rstudio.com/')""
+
+#install shiny stuff
+RUN wget\
+  https://raw.github.com/rstudio/shiny-server/master/config/upstart/shiny-server.conf\
+  -O /etc/init/shiny-server.conf
 
 # Copy run-shiny.sh to the right location to start up the shiny server
 
