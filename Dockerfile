@@ -19,7 +19,7 @@ RUN apt-get update && \
 
 # RUN sudo R -e "source('https://bioconductor.org/biocLite.R')" 
 
-RUN install2.r --error --deps TRUE \
+RUN install2.r --deps TRUE \
     tidyverse \
     dplyr \
     devtools \
