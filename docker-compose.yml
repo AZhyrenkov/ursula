@@ -18,9 +18,9 @@ services:
       - '3801:3838'
       - '8701:8787'
     volumes:
-      - 'shinyapps/:/srv/shiny-server/'
-      - 'shinylog/:/var/log/shiny-server/'
-      - 'container_home/home/ursula/work'
+      - './shinyapps/:/srv/shiny-server/'
+      - './shinylog/:/var/log/shiny-server/'
+      - './container_home/home/ursula/work'
     environment:
       - ROOT = TRUE
       - USER = ursula
