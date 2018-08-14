@@ -1,3 +1,5 @@
+Inspired by https://github.com/skranz/shinyrstudioDocker
+
 The idea of this Docker container is that you can have one or several shiny apps and at the same time can run RStudio in the container for debugging and development purposes. The idea would be to have one container for each shiny application. Updates of packages or unix shell tools in one container would then not break other shiny apps. 
  
 Having RStudio access to each shiny app container is for convenience. You can then log-in to the RStudio webinterface with the specified username and then modify stuff in the running container, e.g. install new R packages for testing purposes. To log-in into the rstudio webinterface for this container you just need to type the adress of your webserver using the port to which you have mapped rstudio (e.g. 8701 in the example below).
