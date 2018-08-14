@@ -33,8 +33,7 @@ RUN apt-get update && \
 #install necessary packages 
 RUN su - -c "R -e \"source('https://bioconductor.org/biocLite.R')\""
 
-RUN su - -c "R -e \"install.packages(c(\
-	'shiny','tidyverse','ggplot2','DBI','RODBC',' tidyverse','dplyr', \
+RUN su - -c "R -e \"install.packages(c('shiny','tidyverse','ggplot2','DBI','RODBC',' tidyverse','dplyr', \
     'devtools','formatR','remotes','selectr','RMySQL','RODBC','slackr', \
 	'ggplot2','RPostgreSQL','corrr','carret','DBI','devtools'), repos='https://cran.rstudio.com/')\""
 
