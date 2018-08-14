@@ -9,7 +9,7 @@ RUN apt-get update && \
 	gdebi-core \
 	libxml2-dev \
 	libcairo2-dev \
-	libsqlite-dev \
+	libsqlite0-dev \
 	libmariadbd-dev \
 	libmariadb-client-lgpl-dev \
 	libpq-dev \
@@ -18,7 +18,7 @@ RUN apt-get update && \
     pandoc \
     pandoc-citeproc \
     libcurl4-gnutls-dev \
-    libcairo2-dev/unstable \
+    libcairo2-dev \
     libxt-dev && \
     wget --no-verbose https://download3.rstudio.org/ubuntu-14.04/x86_64/VERSION -O "version.txt" && \
     VERSION=$(cat version.txt)  && \
@@ -33,7 +33,7 @@ RUN apt-get update && \
 #install necessary packages 
 RUN su - -c "R -e \"source('https://bioconductor.org/biocLite.R')\""
 
-RUN su - -c "R -e \"install.packages(c('shiny','tidyverse','ggplot2','DBI','RODBC',' tidyverse','dplyr', \
+RUN su - -c "R -e \"install.packages(c('shiny','tidyverse','ggplot2','DBI','RODBC','dplyr', \
     'devtools','formatR','remotes','selectr','RMySQL','RODBC','slackr', \
 	'ggplot2','RPostgreSQL','corrr','carret','DBI','devtools'), repos='https://cran.rstudio.com/')\""
 
