@@ -6,20 +6,24 @@ MAINTAINER Aleksey Zhirenkov "ozhyrenkov@gmail.com"
 # Prepare linux environment
 RUN apt-get update && \
     apt-get install -y \
-	gdebi-core \
-	libxml2-dev \
-	libcairo2-dev \
-	libsqlite0-dev \
-	libmariadbd-dev \
-	libmariadb-client-lgpl-dev \
-	libpq-dev \
-	libssh2-1-dev \
-	sudo \
-    pandoc \
-    pandoc-citeproc \
-    libcurl4-gnutls-dev \
-    libcairo2-dev \
-    libxt-dev && \
+        gdebi-core \
+        libxml2-dev \
+        apt-utils \
+        libcairo2-dev \
+        libsqlite0-dev \
+        libmariadbd-dev \
+        libmariadb-client-lgpl-dev \
+        libpq-dev \
+        libssh2-1-dev \
+        sudo \
+        openssl \
+        libgit2-dev \
+        libssl-dev \
+        pandoc \
+        pandoc-citeproc \
+        libcurl4-gnutls-dev \
+        libcairo2-dev \
+        libxt-dev && \
     wget --no-verbose https://download3.rstudio.org/ubuntu-14.04/x86_64/VERSION -O "version.txt" && \
     VERSION=$(cat version.txt)  && \
     wget --no-verbose "https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-$VERSION-amd64.deb" -O ss-latest.deb && \
@@ -28,6 +32,7 @@ RUN apt-get update && \
     R -e "install.packages(c('shiny', 'rmarkdown'), repos='https://cran.rstudio.com/')" && \
     cp -R /usr/local/lib/R/site-library/shiny/examples/* /srv/shiny-server/ && \
     rm -rf /var/lib/apt/lists/*
+
 
 
 #install necessary packages 
