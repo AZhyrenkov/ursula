@@ -17,7 +17,7 @@ RUN apt-get update && \
 	libpq-dev \
 	libssh2-1-dev \
 
-RUN R -e "source('https://bioconductor.org/biocLite.R')" \
+RUN R "source('https://bioconductor.org/biocLite.R')" \
   && install2.r --error \
     --deps TRUE \
     tidyverse \
