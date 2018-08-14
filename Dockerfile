@@ -31,7 +31,7 @@ RUN apt-get update && \
 
 
 #install necessary packages 
-RUN su - && -c "R -e \"source('https://bioconductor.org/biocLite.R')\""
+RUN su - -c "R -e \"source('https://bioconductor.org/biocLite.R')\""
 
 RUN su - -c "R -e \
 	"install.packages(c( \
