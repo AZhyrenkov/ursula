@@ -27,7 +27,7 @@ services:
       - PASSWORD = EverybodyWins9000!
       - RUN_RSTUDIO = yes
       - RUN_SHINY = yes
-    entrypoint:"/usr/bin/with-contenv bash"
+    # entrypoint:"/usr/bin/with-contenv bash"
     networks:
       - ursula_network
 networks:
