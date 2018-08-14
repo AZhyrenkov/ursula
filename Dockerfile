@@ -4,7 +4,7 @@ MAINTAINER Aleksey Zhirenkov "ozhyrenkov@gmail.com"
 # Inspired by Sebastian Kranz "sebastian.kranz@uni-ulm.de" https://github.com/skranz/shinyrstudioDocker
 
 #install necessary packages 
-#RUN su - -c "R -e \"install.packages(c('shiny','tidyverse','ggplot2','DBI','RODBC','), repos='https://cran.rstudio.com/')\""
+RUN su - -c "R -e \"install.packages(c('shiny','tidyverse','ggplot2','DBI','RODBC','), repos='https://cran.rstudio.com/')\""
 
 RUN apt-get update && \
     apt-get install -y \
@@ -17,9 +17,9 @@ RUN apt-get update && \
 	libpq-dev \
 	libssh2-1-dev \
 
-RUN R "source('https://bioconductor.org/biocLite.R')" \
-  && install2.r --error \
-    --deps TRUE \
+RUN R "source('https://bioconductor.org/biocLite.R')" 
+
+RUN install2.r --error --deps TRUE \
     tidyverse \
     dplyr \
     devtools \
